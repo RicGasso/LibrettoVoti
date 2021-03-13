@@ -61,6 +61,6 @@ public class Voto {
 		return "Voto [nome=" + nome + ", voto=" + voto + ", data=" + data + "]";
 	}
 	
-	
+	 
 
 }
