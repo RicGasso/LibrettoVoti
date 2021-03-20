@@ -68,6 +68,38 @@ public class Libretto {
 		return risultato;
 	}
 
+	/**
+	 * Verifica se nel libretto c'è già un voto con lo stesso esame e la stessa valutazione
+	 * @param v
+	 * @return
+	 */
+	public boolean esisteDuplicatoVoto(Voto v) {
+		boolean trovato = false;
+		for(Voto voto: this.voti) {
+			if(voto.getNome().equals(v.getNome()) && voto.getVoto()==v.getVoto()) {
+				trovato = true;
+				break;
+			}
+		}
+		return trovato;
+	}
+	
+	
+	/**
+	 * Verifica se nel libretto c'è già un voto per lo stesso esame ma con valutazione diversa
+	 * @param v
+	 * @return
+	 */
+	public boolean esisteConflittoVoto(Voto v) {
+		boolean trovato = false;
+		for(Voto voto: this.voti) {
+			if(voto.getNome().equals(v.getNome()) && voto.getVoto()!=v.getVoto()) {
+				trovato = true;
+				break;
+			}
+		}
+		return trovato;
+	}
 	
 	public String toString() {
 		return this.voti.toString();
