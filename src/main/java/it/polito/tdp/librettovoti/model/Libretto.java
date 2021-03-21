@@ -5,13 +5,16 @@ import java.util.*;
 public class Libretto {
 
 	private List<Voto> voti;
+	private Map<String, Voto> votiMap; //identity map
 
 	public Libretto() {
 		this.voti = new ArrayList<>();
+		this.votiMap = new HashMap<>();
 	}
 
 	public void add(Voto v){
 		this.voti.add(v);
+		this.votiMap.put(v.getNome(), v);
 	}
 	
 	/*bleah
@@ -57,15 +60,17 @@ public class Libretto {
 	 * @param nomeCorso
 	 * @return
 	 */
-	public Voto ricercaVoto(String nomeCorso) {
-		Voto risultato = null;
+	public Voto ricercaCorso(String nomeCorso) {
+		/*Voto risultato = null;
 		for(Voto v : this.voti) {
 			if(v.getNome().equals(nomeCorso)) {
 				risultato = v;
 				break;
 			}
 		}
-		return risultato;
+		return risultato;*/
+		
+		return this.votiMap.get(nomeCorso);
 	}
 
 	/**
@@ -74,14 +79,27 @@ public class Libretto {
 	 * @return
 	 */
 	public boolean esisteDuplicatoVoto(Voto v) {
-		boolean trovato = false;
+		/*boolean trovato = false;
 		for(Voto voto: this.voti) {
 			if(voto.getNome().equals(v.getNome()) && voto.getVoto()==v.getVoto()) {
 				trovato = true;
 				break;
 			}
 		}
-		return trovato;
+		return trovato;*/
+		
+		Voto trovato = this.votiMap.get(v.getNome());
+		
+		if(trovato == null) {
+			return false;
+		}
+		if(trovato.getVoto()==v.getVoto()) {
+			return true;
+		}else {
+			return false;
+		}
+		
+			
 	}
 	
 	
@@ -91,14 +109,26 @@ public class Libretto {
 	 * @return
 	 */
 	public boolean esisteConflittoVoto(Voto v) {
-		boolean trovato = false;
+		/*boolean trovato = false;
 		for(Voto voto: this.voti) {
 			if(voto.getNome().equals(v.getNome()) && voto.getVoto()!=v.getVoto()) {
 				trovato = true;
 				break;
 			}
 		}
-		return trovato;
+		return trovato;*/
+		Voto trovato = this.votiMap.get(v.getNome());
+		
+		if(trovato == null) {
+			return false;
+		}
+		if(trovato.getVoto()!=v.getVoto()) {
+			return true;
+		}else {
+			return false;
+		}
+		
+		
 	}
 	
 	public String toString() {

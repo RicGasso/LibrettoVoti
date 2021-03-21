@@ -24,6 +24,16 @@ public class TestLibretto {
 		
 		Libretto libretto25 = libretto.votiUguali(25);
 		System.out.println(libretto25);
+		Voto analisi = libretto.ricercaCorso("Analisi 1");
+		System.out.println(analisi);
+		Voto analisi3 = libretto.ricercaCorso("Analisi 3");
+		System.out.println(analisi3);
+		
+		Voto chimica = libretto.ricercaCorso("Chimica");
+		Voto chimica_doppio = new Voto("Chimica", 25, LocalDate.of(2019, 9, 15));
+		Voto chimica_conflitto = new Voto("Chimica", 24, LocalDate.of(2019, 9, 15));
+		System.out.println(chimica + " doppione di " + chimica_doppio +"? ->" +libretto.esisteDuplicatoVoto(chimica_doppio));
+		System.out.println(chimica + " in conflitto con " + chimica_conflitto +"? ->" +libretto.esisteConflittoVoto(chimica_conflitto));
 		
 	}
 
